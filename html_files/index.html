@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>gamingHUB || Play & Win</title>
+    <link rel="shortcut icon" href="{% static '/static_files/images/FAVICON.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static '/static_files/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <link rel="stylesheet" type="text/css" href="{% static '/vendors/styles/style.css' %}" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258"
+        crossorigin="anonymous"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "G-GBZ3SGGX85");
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != "dataLayer" ? "&l=" + l : "";
+            j.async = true;
+            j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
+    </script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<body>
+{% if messages %}
+	{% for message in messages %}
+	<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" style="display: block;
+	width: 100%; position: fixed; z-index: 999;">
+		<strong>Message: </strong> {{message}}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+	{% endfor %}
+	{% endif %}
+    <div class="pre-loader">
+        <div class="pre-loader-box">
+            <div class="loader-logo">
+                <img src="{% static '/static_files/images/FAVICON.png' %}" alt="" />
+            </div>
+            <div class="loader-progress" id="progress_div">
+                <div class="bar" id="bar1"></div>
+            </div>
+            <div class="percent" id="percent1">0%</div>
+            <div class="loading-text">Loading...</div>
+        </div>
+    </div>
+    <input type="checkbox" name="bar-icon" id="bar-icon" style="display: none;">
+    <input type="checkbox" name="search-check" id="search-check" style="display: none;">
+    <div class="navigation-bar nav-bar">
+        <div class="logo-links">
+            <div class="logo">
+                <a href="#">
+                    <img src="{% static '/static_files/images/logo.png' %}" alt="">
+                </a>
+            </div>
+            <div class="links">
+                <nav>
+                    <ul>
+                        <li><a href="#landing-page">Home</a></li>
+                        <li><a href="#library">Our Library</a></li>
+                        <li><a href="#playground">Playground</a></li>
+                        <li><a href="#about">About gamingHUB</a></li>
+                        <li><a href="#contact-us">Contact</a></li>
+                        <li><a href="/register">Signup</a></li>
+                        <li><a href="/login">Login</a></li>
+                        <div class="social-icons">
+                            <a href="#">
+                                <i class="fa fa-instagram"></i>
+                                <i class="fa fa-twitter"></i>
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </div>
+                    </ul>
+                    <label for="bar-icon">
+                        <i class="fa fa-bars bar-icon" id="bar-icon"></i>
+                        <i class="fa fa-close" id="cross-icon"></i>
+                    </label>
+                </nav>
+            </div>
+        </div>
+        <div class="search">
+            <input type="search" name="searchbox" id="nav-search" placeholder="Find out your gaming hub">
+            <button type="submit"> <label for="search-check"><i class="fa fa-search"
+                        id="search-check"></i></label></button>
+        </div>
+    </div>
+    <div class="landing-page" id="landing-page">
+        <img src="{% static '/static_files/images/bgimage.jpg' %}" alt="">
+        <div class="landing-page-text" id="landing-page-text-box">
+        {%if request.user.username%}
+            <h1 style="font-size: 1.7em;">Welcome <span style="color: orange; font-size: 1.4em;">{{request.user.username}}</span></h1>
+        {%endif%}
+            <h1><span class="typed-text"></span><span class="cursor blink">&nbsp;</span><br>Awesome games just on your
+                palm<br>full Realistic fun with yourself</h1>
+            <p>Play best games with just of free cost with 0 system requirements. Here you <br>will get your own
+                personalised playground for playing 20+ games with just<br> one click. We provide a great fun to all
+                with 0 rupees, 0 requirements and creative playground.<br>So don't think, create your account now and
+                play unlimitedly.</p>
+            <a href="/register"><button>Create Playground</button></a>
+        </div>
+    </div>
+    <div class="three-cards">
+        <div class="card">
+            <div class="img">
+                <img src="{% static '/static_files/images/FAVICON.png' %}" alt="">
+            </div>
+            <div class="text">
+                <p>A great place about playing very cool games is gamingHUB. Here you will get 20+ games with high and cool graphics. So if the thing is about playing games with low data lose, then choose gamingHUB</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img">
+                <img src="{% static '/static_files/images/FAVICON.png' %}" alt="">
+            </div>
+            <div class="text">
+                <p>All the things on gamingHUB are free. We did not charge anything here. We always try to give a best experience to you without any cost or in very little cost. Our first and last motive is providing services to everyone without any single rupee or with very little cost.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img">
+                <img src="{% static '/static_files/images/FAVICON.png' %}" alt="">
+            </div>
+            <div class="text">
+                <p>Enjoy your favourite game without download it on your system. We always respect about your money, data and storage. So we are come here with a such awesome platform which provides you free games with web experience with very great graphics.</p>
+            </div>
+        </div>
+    </div>
+    <div class="our-games library" id="library">
+        <h1>Our Game Collection</h1>
+        <div class="game-cards">
+            <div class="card">
+                <div class="img">
+                    <img src="https://cdn-icons-png.flaticon.com/128/7898/7898663.png" alt="">
+                </div>
+                <div class="content">
+                    <h4>Chess</h4>
+                </div>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <img src="https://cdn-icons-png.flaticon.com/128/7505/7505666.png" alt="">
+                </div>
+                <div class="content">
+                    <h4>Bingo</h4>
+                </div>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2662/2662258.png" alt="">
+                </div>
+                <div class="content">
+                    <h4>Sudoku</h4>
+                </div>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <img src="https://cdn-icons-png.flaticon.com/128/514/514163.png" alt="">
+                </div>
+                <div class="content">
+                    <h4>Hangman</h4>
+                </div>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <img src="https://cdn-icons-png.flaticon.com/128/10104/10104808.png" alt="">
+                </div>
+                <div class="content">
+                    <h4>Guess The Number</h4>
+                </div>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <img src="https://cdn-icons-png.flaticon.com/128/9982/9982287.png" alt="">
+                </div>
+                <div class="content">
+                    <h4>Chor, Sipahi & Bazir</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about" id="about">
+        <div class="bgimg">
+            <img src="{% static '/static_files/images/aboutus.jpg' %}" alt="">
+        </div>
+        <div class="image-content">
+            <h1>gamingHUB</h1>
+            <p style="color: indianred;">Most leading, powerful and popular platform for free games just at in your pocket. gamingHUB provides you many of games with 0 cost and very little system requirements. So what are you waiting for? Click on the button given below and start playing and win great and cool rewards.</p>
+            <a href="/register">
+                <button>SignUp Now</button>
+            </a>
+        </div>
+        <div class="about-content">
+            <h3>About gamingHUB</h3>
+            <p>A very great hello to everyone. My name is DGSushant, your coding mentor and welcome to the gamingHUB. gamingHUB is a most popular and powerful platform for playing games more than 20 with free of cost with 0 system requirements. gamingHUB provides you best playing experience for free with smoothly and fastly. Our creative playground fascinate you and give a feel of gamer. gamingHUB also provide a your own personalised dashboard which keep records about your playing and winning. For enhancing your interest towards games, gamingHUB conducts lots of challenges, competetions which gives you so great and awesome rewards and make you a perfect gamer. <br><p style="color: green; font-size: 1.2em; font-weight: 700;">gamingHUB always believes in providing a great experience to it's user in each and every field.</p></p>
+        </div>
+        <div class="images-section-heading">
+            <h1>Our Memories</h1>
+        </div>
+        <div class="images-section">
+            <img src="https://img.freepik.com/free-photo/group-positive-young-people-posing-together_23-2148431344.jpg?size=626&ext=jpg&uid=R113549257&ga=GA1.2.911473493.1687774484&semt=ais"
+                alt="">
+            <img src="https://img.freepik.com/free-vector/teamwork-concept-landing-page_52683-20164.jpg?size=626&ext=jpg&uid=R113549257&ga=GA1.1.911473493.1687774484&semt=ais"
+                alt="">
+            <img src="https://img.freepik.com/premium-photo/business-team-manager-meeting_183219-11.jpg?size=626&ext=jpg&uid=R113549257&ga=GA1.1.911473493.1687774484&semt=ais"
+                alt="">
+            <img src="https://img.freepik.com/free-photo/business-people-partnership-support-team-urban-scene-concept_53876-144834.jpg?size=626&ext=jpg&uid=R113549257&ga=GA1.2.911473493.1687774484&semt=ais"
+                alt="">
+            <img src="https://img.freepik.com/free-photo/about-as-service-contact-information-concept_53876-138509.jpg?size=626&ext=jpg&uid=R113549257&ga=GA1.2.911473493.1687774484&semt=ais"
+                alt="">
+        </div>
+        <div class="images-section-heading msg-from-owner">
+            <h1 style="font-size: 1.9em;">A Message from Owner Side</h1>
+        </div>
+        <div class="msg-video" style="display: flex; width: 100%; padding-bottom: 12px; justify-content: center; padding-top: 38px;">
+            <video src="{% static '/static_files/msg.mp4' %}" autoplay controls style="width: 380px;"></video>
+        </div>
+    </div>
+    <div class="playground" id="playground">
+        <div class="play-bg">
+            <img src="{% static '/static_files/images/playground.jpg' %}" alt="">
+        </div>
+        <div class="text">
+            <h1>Your Playground</h1>
+            <p>A most fascinating thing on the gamingHUB is your playground. We had designed<br> our playground only for you so it gives you a gamer vibe and makes you a perfect<br> gamer.Our tools, features in playground helps you very much while playing games<br> about getting all the details about the game.Our playground<br> is so awesome and attractive so gamers did not get bored and they make a remarkable history in the <br>industry of gaming. So why waiting?Explore our games, Signup, Login <br>and start playing your own favourite game with us.<br><br><span>Best of luck for your gaming experience on gamingHUB<br>Regards <span style="color: crimson;">DGSushant!!!</span></span></p>
+        </div>
+    </div>
+    </div>
+    <div class="contact-us" id="contact-us">
+        <div class="contact-content">
+            <div class="form">
+                <div class="contact_us">
+                    <div class="responsive-container-block container">
+                        <form class="form-box" action="contact-us" method="get">
+                            <p class="text-blk contact-head">
+                                Contact Us
+                            </p>
+                            <p class="text-blk contact-subhead">
+                                Our most active and helping team helps to make a direct interaction b/w you and me. We always respect the queries or messages of our respected user and tried from heartly to make them solve very quickly.
+                            </p>
+                            <p class="text-blk contact-subhead" style="margin-top: 5px;">
+                                <li><i class="fa fa-phone"></i>Phone:- 8267874664</li>
+                                <li><i class="fa fa-phone"></i>Phone:- 7302529528</li>
+                                <li><i class="fa fa-envelope"></i>Email:- servicegamingHUB@gmail.com</li>
+                            </p>
+                            <div class="container-block form-wrapper">
+                                <div class="responsive-container-block">
+                                    <div class="responsive-cell-block wk-ipadp-6 wk-tab-12 wk-mobile-12 wk-desk-6"
+                                        id="i10mt-4">
+                                        <p class="text-blk input-title">
+                                            First Name
+                                        </p>
+                                        <input class="input" id="ijowk-4" name="f_n">
+                                    </div>
+                                    <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
+                                        <p class="text-blk input-title">
+                                            Last Name
+                                        </p>
+                                        <input class="input" id="indfi-3" name="l_n">
+                                    </div>
+                                    <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
+                                        <p class="text-blk input-title">
+                                            Email
+                                        </p>
+                                        <input class="input" id="ipmgh-4" name="email">
+                                    </div>
+                                    <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
+                                        <p class="text-blk input-title">
+                                            Phone No.
+                                        </p>
+                                        <input class="input" id="imgis-4" name="phone">
+                                    </div>
+                                    <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-12 wk-ipadp-12 w-100"
+                                        id="i634i-4">
+                                        <p class="text-blk input-title">
+                                            Message
+                                        </p>
+                                        <textarea class="textinput" id="i5vyy-4"
+                                            placeholder="Write your message..." name="msg"></textarea>
+                                    </div>
+                                </div>
+                                <button class="submit-btn">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer" id="footer">
+        <!-- Remove the container if you want to extend the Footer to full width. -->
+        <div>
+            <!-- Footer -->
+            <footer class="text-center text-lg-start text-white" style="background-color: #3e4551">
+                <!-- Grid container -->
+                <div class="container cont-1 pl-4 pr-4 pb-0">
+                    <!-- Section: Links -->
+                    <section class="">
+                        <!--Grid row-->
+                        <div class="row">
+                            <!--Grid column-->
+                            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                                <h5 class="text-uppercase">About gamingHUB</h5>
+
+                                <p>
+                                    gamingHUB is a most leading platform now-a-days on internet. gamingHUB provides the
+                                    free games with completely free of cost without download games on your system.
+                                    gamingHUB provides 20+ games for free. So what are you waiting for? Sign up now and
+                                    play unlimitedly
+                                </p>
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                                <h5 class="text-uppercase">Links</h5>
+
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#landing-page" class="text-white">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="#library" class="text-white">Our Library</a>
+                                    </li>
+                                    <li>
+                                        <a href="/dashboard" class="text-white">Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a href="#playground" class="text-white">Playground</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                                <h5 class="text-uppercase">Library</h5>
+
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="/play-chess" class="text-white">Chess</a>
+                                    </li>
+                                    <li>
+                                        <a href="#!" class="text-white">Sudoku</a>
+                                    </li>
+                                    <li>
+                                        <a href="#!" class="text-white">Hangman</a>
+                                    </li>
+                                    <li>
+                                        <a href="#!" class="text-white">Carrom Board</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                                <h5 class="text-uppercase">Address</h5>
+
+                                <ul class="list-unstyled mb-0">
+                                    <li class="text-white">
+                                        Udhar, Akola - Jagner Road
+                                    </li>
+                                    <li class="text-white">
+                                        City, Dist - Agra
+                                    </li>
+                                    <li class="text-white">
+                                        Uttar Pradesh
+                                    </li>
+                                    <li class="text-white">
+                                        India
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                                <h5 class="text-uppercase">SignUp/Login</h5>
+
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="/register" class="text-white">Signup</a>
+                                    </li>
+                                    <li>
+                                        <a href="/login" class="text-white">Login</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--Grid column-->
+                        </div>
+                        <!--Grid row-->
+                    </section>
+                    <!-- Section: Links -->
+
+                    <hr class="mb-4" />
+
+                    <!-- Section: CTA -->
+                    <section class="">
+                        <p class="d-flex justify-content-center align-items-center">
+                            <span class="me-3">Register for free</span>
+                            <a href="/register">
+                                <button type="button" class="btn btn-outline-light btn-rounded">
+                                    Sign up!
+                                </button>
+                            </a>
+                        </p>
+                    </section>
+                    <!-- Section: CTA -->
+
+                    <hr class="mb-4" />
+
+                    <!-- Section: Social media -->
+                    <section class="mb-4 text-center">
+                        <!-- Facebook -->
+                        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                                class="fab fa-facebook-f"></i></a>
+
+                        <!-- Twitter -->
+                        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                                class="fab fa-twitter"></i></a>
+
+                        <!-- Google -->
+                        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                                class="fab fa-google"></i></a>
+
+                        <!-- Instagram -->
+                        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                                class="fab fa-instagram"></i></a>
+
+                        <!-- Linkedin -->
+                        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                                class="fab fa-linkedin-in"></i></a>
+
+                        <!-- Github -->
+                        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                                class="fab fa-github"></i></a>
+                    </section>
+                    <!-- Section: Social media -->
+                </div>
+                <!-- Grid container -->
+
+                <!-- Copyright -->
+                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+                    © Copyright 2023, Designed & Developed by :
+                    <a class="text-white" href="#">Dynamic Tech</a>
+                </div>
+                <!-- Copyright -->
+            </footer>
+            <!-- Footer -->
+        </div>
+        <!-- End of .container -->
+    </div>
+</body>
+<script src="{% static '/static_files/index.js' %}"></script>
+<script src="https://kit.fontawesome.com/8d3f65e0cd.js" crossorigin="anonymous"></script>
+<script src="{% static '/static_files/vendors/scripts/core.js' %}"></script>
+<script src="{% static '/static_files/vendors/scripts/script.min.js' %}"></script>
+<script src="{% static '/static_files/vendors/scripts/process.js' %}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
+        style="display: none; visibility: hidden"></iframe></noscript>
+
+</html>

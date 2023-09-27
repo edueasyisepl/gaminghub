@@ -1,0 +1,1117 @@
+@import url('https://fonts.googleapis.com/css2?family=Radley:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Germania+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fresca&family=Germania+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fresca&family=Germania+One&family=Rubik+Glitch&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+    list-style: none;
+    outline: none;
+}
+
+html,
+body {
+    scroll-behavior: smooth;
+}
+
+/* Navigation Bar Design start */
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: fixed;
+    border-bottom: 2px solid grey;
+    background: lavender;
+    box-shadow: 4px 3px 8px 5px #c0c0e4;
+    z-index: 5;
+}
+
+.nav-bar .search {
+    width: 297px;
+    padding-right: 49px;
+    padding-top: 20px;
+    border-radius: 84px 0px 0px 0px;
+    padding-left: 48px;
+    background: #b1b1e3;
+    position: relative;
+}
+
+.nav-bar .search input {
+    display: block;
+    position: absolute;
+    right: 13px;
+    width: 240px;
+    font-size: 0.89em;
+    height: 43px;
+    border-radius: 34px;
+    background-color: whitesmoke;
+    padding: 0px 18px;
+    font-family: 'Roboto', serif;
+}
+
+.nav-bar .search i {
+    display: block;
+    position: absolute;
+    right: 29px;
+    top: 35px;
+    font-size: 0.96em;
+}
+
+.nav-bar .logo-links {
+    display: flex;
+    padding-left: 17px;
+}
+
+.nav-bar .logo-links .links nav {
+    padding-top: 25px;
+    padding-left: 23px;
+}
+
+.nav-bar .logo-links .links nav ul {
+    display: flex;
+}
+
+.nav-bar .logo-links .links nav ul li {
+    margin-left: 15px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav-bar .logo-links .links nav ul li a {
+    color: black;
+    font-family: 'Radley', serif;
+    font-weight: 650;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+.nav-bar .logo-links .links nav i {
+    display: none;
+    cursor: pointer;
+    font-size: 1.7em;
+}
+
+.nav-bar .logo-links .links nav ul li a:hover {
+    color: teal;
+    transition: color .15s;
+}
+
+/* Navigation Bar Design end */
+
+
+/* Landing Section Design Starts */
+
+.landing-page {
+    position: relative;
+    width: 100%;
+    display: block;
+    height: 100vh;
+    min-height: 900px;
+}
+
+.landing-page img {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    min-height: 1000px;
+    background-size: cover;
+    background-position: center;
+}
+
+.landing-page .landing-page-text {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    top: 217px;
+    padding-left: 23px;
+}
+
+.landing-page .landing-page-text h1 {
+    font-family: 'Fresca', sans-serif;
+    font-size: 1.7em;
+    color: #436c8e;
+    margin-right: 12px;
+}
+
+@keyframes slidingheadings {
+    from {
+        top: 270px;
+    }
+
+    to {
+        top: 217px;
+    }
+}
+
+.landing-page .landing-page-text p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.89em;
+    margin-top: 7px;
+    color: rgb(21, 21, 100);
+    margin-right: 12px;
+}
+
+.landing-page .landing-page-text a button {
+    padding: 13px;
+    margin-top: 3px;
+    background: aquamarine;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    margin-right: 12px;
+}
+
+.landing-page .landing-page-text a button:hover {
+    background: transparent;
+    border-bottom: 2px solid slateblue;
+    border-radius: 0px;
+    transition: .3s ease-in-out;
+}
+
+
+/* Landing Section Design Ends */
+
+
+/* Typing Effect Starts */
+
+:root {
+    --kanit: 'Kanit';
+    --dark: #1c1c1c;
+    --light: #c4c4c4;
+    --teal: #008080;
+    --orangered: #ff4500;
+}
+
+.typed-text {
+    color: darkorchid;
+    font-size: 1.3em;
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    margin-left: 4px;
+    background: var(--teal);
+}
+
+.cursor.blink {
+    animation: blink 0.8s ease-in-out infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        background: cornflowerblue;
+    }
+
+    40%,
+    50% {
+        background: transparent;
+    }
+}
+
+@keyframes curblink {
+
+    0%,
+    100% {
+        background: var(--orangered);
+        width: 4px;
+    }
+
+    40%,
+    50% {
+        background: transparent;
+    }
+}
+
+/* Typing Effect Ends */
+
+
+/* three-cards Design starts */
+
+.three-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    position: relative;
+    gap: 10px;
+    width: 100%;
+    margin-top: -70px;
+    padding-bottom: 23px;
+}
+
+.three-cards .card {
+    width: 295px;
+    padding-bottom: 17px;
+    border: 1.5px solid grey;
+    background-color: whitesmoke;
+    border-radius: 14px;
+    margin-left: 19px;
+    margin-right: 19px;
+    margin: auto;
+}
+
+.three-cards .card:nth-child(3) {
+    background: dodgerblue;
+    color: white;
+}
+
+.three-cards .card:hover {
+    background-color: dodgerblue;
+    transition: background .6s ease;
+    color: white;
+}
+
+.three-cards .card .img img {
+    display: block;
+    margin: auto;
+    margin-top: 8px;
+}
+
+.three-cards .card .text p {
+    display: block;
+    margin: 0px 7px;
+    margin-top: 16px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-size: 0.89em;
+}
+
+/* three-cards Design ends */
+
+
+/* our-library design starts */
+
+.library {
+    padding: 30px 20px 0px 20px;
+}
+
+.library h1 {
+    font-size: 1.9em;
+    font-family: 'Limelight', cursive;
+    color: teal;
+}
+
+.library .game-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 15px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.library .game-cards .card {
+    display: block;
+    width: 230px;
+    border: 2px solid grey;
+    margin: auto;
+    border-radius: 8px;
+    padding-bottom: 7px;
+}
+
+.library .game-cards .card:hover:nth-child(even) {
+    background: rgb(156, 71, 216);
+    transition: background .3s ease-in;
+}
+
+.library .game-cards .card:hover:nth-child(odd) {
+    background: orange;
+    transition: background .2s ease-in;
+}
+
+.library .game-cards .card .img img {
+    display: block;
+    margin: auto;
+    width: 115px;
+    height: 70px;
+    margin-top: 18px;
+    font-size: 2.3em;
+}
+
+.library .game-cards .card .content h4 {
+    display: block;
+    text-align: center;
+    margin-top: 48px;
+    font-size: 1.3em;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 800;
+    color: crimson;
+}
+
+/* our-library design ends */
+
+
+/* playground design starts */
+
+.playground {
+    padding-top: 50px;
+    position: relative;
+}
+
+.playground .play-bg img {
+    position: absolute;
+    width: 100%;
+    height: 200vh;
+    min-height: 790px;
+}
+
+.playground .text {
+    padding-top: 130px;
+}
+
+.playground .text h1 {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    font-family: 'Limelight', cursive;
+    font-size: 1.9em;
+    margin-left: 20px;
+    color: orange;
+    margin-right: 9px;
+}
+
+.playground .text p {
+    position: absolute;
+    z-index: 1;
+    margin-top: 40px;
+    margin-left: 20px;
+    color: white;
+    font-family: 'Radley', sans-serif;
+    margin-right: 9px;
+}
+
+
+/* playground design ends */
+
+
+/* About design starts */
+
+.about .bgimg {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
+
+.about .bgimg img {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    height: 800px;
+    clip-path: polygon(200% 0%, 0% 100%, 0% 0%);
+    opacity: 70%;
+}
+
+.about .about-content {
+    width: 60%;
+    margin: auto;
+    position: relative;
+    margin-top: 410px;
+    padding-bottom: 22px;
+}
+
+.about .about-content h3 {
+    font-size: 1.7em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+}
+
+.about .about-content p {
+    font-family: 'Rubik Glitched', sans-serif;
+    margin-top: 6px;
+}
+
+.about .image-content {
+    display: block;
+    position: relative;
+    width: 60%;
+    margin: auto;
+}
+
+.about .image-content h1 {
+    display: block;
+    margin-top: -250px;
+    text-align: left;
+    font-family: 'Limelight', sans-serif;
+    color: teal;
+}
+
+.about .image-content p {
+    color: orange;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 12px;
+}
+
+.about .image-content a {
+    text-decoration: none;
+}
+
+.about .image-content a button {
+    display: block;
+    position: relative;
+    z-index: 1;
+    padding: 14px 24px;
+    margin-top: 6px;
+    border-radius: 4px;
+    font-size: 0.86em;
+    cursor: pointer;
+}
+
+.about .images-section {
+    display: flex;
+    position: relative;
+    margin-top: 54px;
+    width: 100%;
+    height: 232px;
+    clip-path: polygon(230% 0%, 0% 100%, 0% 0%);
+    margin-bottom: 49px;
+}
+
+.about .images-section img {
+    width: 20%;
+    height: 232px;
+}
+
+.about .images-section-heading h1 {
+    display: block;
+    text-align: center;
+    font-family: 'Limelight', sans-serif;
+    color: rgb(73, 72, 72);
+    margin-top: 23px;
+}
+
+
+/* About design ends */
+
+
+/* Contact design starts */
+
+.contact-us {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    margin-top: 400px;
+    height: 100vh;
+    min-height: 700px;
+}
+
+.contact_us * {
+    font-family: Nunito, sans-serif;
+    box-sizing: border-box;
+}
+
+.contact_us .text-blk {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    line-height: 25px;
+}
+
+.contact_us .responsive-cell-block {
+    min-height: 75px;
+}
+
+.contact_us input:focus {
+    outline-color: initial;
+    outline-style: none;
+    outline-width: initial;
+}
+
+.contact_us .container-block {
+    min-height: 75px;
+    height: fit-content;
+    width: 100%;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    display: block;
+}
+
+.contact_us .responsive-container-block {
+    min-height: 75px;
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 50px;
+    margin-left: auto;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+}
+
+.contact_us .responsive-container-block.big-container {
+    background-color: #03a9f4;
+    position: static;
+    height: auto;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 30px;
+    padding-bottom: 0px;
+    padding-left: 30px;
+}
+
+.contact_us .responsive-container-block.container {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    margin: auto;
+    min-height: 75px;
+    flex-direction: column;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    background-color: #00b289;
+}
+
+.contact_us .container-block.form-wrapper {
+    background-color: white;
+    max-width: 1000px;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 20px 7px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    padding-top: 90px;
+    padding-right: 40px;
+    padding-bottom: 75px;
+    padding-left: 40px;
+    margin-top: 80px;
+    margin-bottom: 100px;
+    box-sizing: border-box;
+}
+
+.contact_us .text-blk.contactus-head {
+    font-size: 38px;
+    line-height: 52px;
+    font-weight: 900;
+}
+
+.contact_us .text-blk.contactus-subhead {
+    color: #9c9c9c;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 50px;
+    margin-left: 0px;
+}
+
+.contact_us .responsive-cell-block.wk-desk-6.wk-ipadp-6.wk-tab-12.wk-mobile-12 {
+    width: 50%;
+    min-height: 50px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 55px;
+    margin-left: 0px;
+}
+
+.contact_us .input {
+    width: 96%;
+    height: 48px;
+    padding-top: 1px;
+    padding-right: 15px;
+    padding-bottom: 1px;
+    padding-left: 15px;
+    font-size: 16px;
+    color: black;
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: 3px;
+    border-left-width: initial;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    border-left-style: none;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: #d8d7d7;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    box-sizing: border-box;
+}
+
+.contact_us .textinput {
+    width: 100%;
+    min-height: 220px;
+    padding-top: 20px;
+    padding-right: 15px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #eeeeee;
+    border-right-color: #eeeeee;
+    border-bottom-color: #eeeeee;
+    border-left-color: #eeeeee;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    font-size: 16px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    background-color: #f1f2f3;
+    box-sizing: border-box;
+}
+
+.contact_us .submit-btn {
+    width: auto;
+    background-color: #00b289;
+    height: 58px;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-top-style: outset;
+    border-right-style: outset;
+    border-bottom-style: outset;
+    border-left-style: outset;
+    border-top-color: #767676;
+    border-right-color: #767676;
+    border-bottom-color: #767676;
+    border-left-color: #767676;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    padding-top: 1px;
+    padding-right: 60px;
+    padding-bottom: 1px;
+    padding-left: 60px;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    cursor: pointer;
+}
+
+.contact_us .form-box {
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    padding-top: 80px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+
+.contact_us .text-blk.input-title {
+    text-align: left;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    font-size: 19px;
+    color: black;
+    font-weight: 600;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 15px;
+    margin-left: 0px;
+}
+
+.contact_us ::placeholder {
+    color: #b4b4b4;
+}
+
+.contact_us .text-blk.contact-head {
+    font-size: 36px;
+    line-height: 50px;
+    font-weight: 700;
+    color: white;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 15px;
+    margin-left: 0px;
+}
+
+.contact_us .text-blk.contact-subhead {
+    max-width: 670px;
+    font-size: 20px;
+    line-height: 27px;
+    color: white;
+}
+
+/* Contact design ends */
+
+/* Footer design starts */
+
+.footer {
+    width: 100%;
+    margin-top: 570px;
+}
+
+.footer .cont-1 {
+    padding-top: 88px;
+}
+
+.footer a {
+    text-decoration: none;
+    margin-top: 8px;
+}
+
+.footer h5 {
+    color: teal;
+}
+
+/* Footer design ends */
+
+
+
+/* Responsive Design Start */
+
+@media only screen and (max-width: 1150px) {
+    /* Responsive Design of navigation bar starts */
+
+    .nav-bar .logo-links .links nav ul li {
+        display: none;
+    }
+
+    .nav-bar .logo-links .links nav ul {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        max-height: 100vh;
+        min-height: 900px;
+        position: fixed;
+        left: -100%;
+        background-color: lavender;
+        top: 83px;
+    }
+
+    #bar-icon {
+        display: block;
+    }
+
+    #bar-icon:checked~.nav-bar .logo-links .links nav ul {
+        left: 0;
+        transition: left .9s ease;
+        text-align: center;
+        padding-top: 63px;
+    }
+
+    #bar-icon:checked~.nav-bar .logo-links .links nav ul .social-icons {
+        display: flex;
+        justify-content: center;
+        padding-top: 14px;
+    }
+
+    #bar-icon:checked~.nav-bar .logo-links .links nav ul .social-icons i {
+        display: inline-block;
+        margin: 0px 7px;
+
+    }
+
+    #bar-icon:checked~.nav-bar .logo-links .links nav #cross-icon {
+        display: block;
+    }
+
+    #bar-icon:checked~.nav-bar .logo-links .links nav #bar-icon {
+        display: none;
+    }
+
+    #bar-icon:checked~.nav-bar .logo-links .links nav ul li {
+        display: block;
+        margin-left: 0px;
+        margin-top: 11px;
+        margin-bottom: 15px;
+        animation-name: slidinglinks;
+        animation-duration: 2s;
+    }
+
+    @keyframes slidinglinks {
+        from {
+            transform: translateX(-100%);
+        }
+
+        to {
+            transform: translateX(0%);
+        }
+    }
+
+    /* Responsive Design of navigation bar end */
+}
+
+@media (max-width: 1024px) {
+
+    /* Responsive design of contact us starts */
+    .contact_us .responsive-container-block.container {
+        padding-top: 0px;
+        padding-right: 30px;
+        padding-bottom: 0px;
+        padding-left: 30px;
+    }
+
+    .contact_us .container-block.form-wrapper {
+        margin-top: 60px;
+        margin-right: 0px;
+        margin-bottom: 80px;
+        margin-left: 0px;
+    }
+
+    /* Responsive design of contact us ends */
+}
+
+@media (max-width: 768px) {
+
+    /* Responsive design of contact  us starts */
+    .contact_us .submit-btn {
+        width: 100%;
+    }
+
+    .contact_us .input {
+        width: 100%;
+    }
+
+    .contact_us .textinput {
+        width: 100%;
+    }
+
+    .contact_us .container-block.form-wrapper {
+        margin-top: 80px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+    }
+
+    .contact_us .text-blk.input-title {
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+    }
+
+    .contact_us .container-block.form-wrapper {
+        margin-top: 80px;
+        margin-right: 0px;
+        margin-bottom: 80px;
+        margin-left: 0px;
+    }
+
+    .contact_us .text-blk.contact-subhead {
+        font-size: 18px;
+    }
+
+    /* Responsive design of contact  us starts */
+}
+
+@media only screen and (max-width: 700px) {
+    /* Responsive Design of navigation bar starts */
+
+    .nav-bar .search input {
+        background: transparent;
+        border: none;
+        outline: none;
+        width: 0px;
+    }
+
+    .nav-bar .search {
+        width: 0;
+    }
+
+    #search-check:checked~.nav-bar .search {
+        width: 197px;
+        transition: .5s ease-in-out;
+    }
+
+    #search-check:checked~.nav-bar .search input {
+        width: 240px;
+        background-color: whitesmoke;
+        transition: .8s ease;
+    }
+
+    /* Responsive Design of navigation bar end */
+}
+
+@media only screen and (max-width: 500px) {
+    /* Responsive Design of landing-page starts */
+
+    .landing-page .landing-page-text h1 {
+        font-size: 1.4em;
+    }
+
+    .landing-page .landing-page-text p {
+        font-size: 0.8em;
+    }
+
+    /* Responsive Design of landing-page ends */
+
+    /* Responsive Design of contact us starts */
+
+    .contact_us .container-block.form-wrapper {
+        padding-top: 50px;
+        padding-right: 15px;
+        padding-bottom: 50px;
+        padding-left: 15px;
+    }
+
+    .contact_us .container-block.form-wrapper {
+        margin-top: 60px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+    }
+
+    .contact_us .responsive-cell-block.wk-ipadp-6.wk-tab-12.wk-mobile-12.wk-desk-6 {
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 15px;
+        margin-left: 0px;
+    }
+
+    .contact_us .responsive-container-block {
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 35px;
+        margin-left: 0px;
+    }
+
+    .contact_us .text-blk.input-title {
+        font-size: 12px;
+    }
+
+    .contact_us .responsive-container-block.container {
+        padding-top: 0px;
+        padding-right: 20px;
+        padding-bottom: 0px;
+        padding-left: 20px;
+    }
+
+    .contact_us .container-block.form-wrapper {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        padding-top: 50px;
+        padding-right: 20px;
+        padding-bottom: 50px;
+        padding-left: 20px;
+        margin-top: 50px;
+        margin-right: 0px;
+        margin-bottom: 80px;
+        margin-left: 0px;
+    }
+
+    .contact_us .form-box {
+        padding-top: 50px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+    }
+
+    .contact_us .text-blk.contact-head {
+        font-size: 35px;
+        line-height: 40px;
+    }
+
+    .contact_us .text-blk.contact-subhead {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .contact_us .text-blk.input-title {
+        font-size: 16px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 10px;
+        margin-left: 0px;
+    }
+
+    .contact_us .responsive-cell-block.wk-ipadp-6.wk-tab-12.wk-mobile-12.wk-desk-6 {
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 35px;
+        margin-left: 0px;
+    }
+
+    .contact_us .input {
+        height: 40px;
+    }
+
+    .contact_us .text-blk.contact-head {
+        font-size: 26px;
+        line-height: 35px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 10px;
+        margin-left: 0px;
+    }
+
+    /* Responsive Design of contact us ends */
+
+    /* Responsive Design of footer starts */
+
+    .footer .cont-1 {
+        margin-top: -200px;
+        padding-top: 38px;
+    }
+
+    /* Responsive Design of footer ends */
+}
+
+@media only screen and (max-width: 350px) {
+    /* Responsive Design of three-cards starts */
+
+    .three-cards .card {
+        width: 245px;
+    }
+
+    /* Responsive Design of three-cards ends */
+
+    /* Responsive Design of navigation bar starts */
+
+    .nav-bar .search {
+        display: none;
+    }
+
+    /* Responsive Design of navigation bar end */
+}
+
+
+/* Responsive Design End */

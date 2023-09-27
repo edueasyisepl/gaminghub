@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- Basic Page Info -->
+	<meta charset="utf-8" />
+	{% load static %}
+	<title>Dashboard || gamingHUB</title>
+
+	<!-- Site favicon -->
+	<link rel="shortcut icon" href="{% static '/static_files/images/FAVICON.png' %}" type="image/x-icon">
+
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+		rel="stylesheet" />
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static '/static_files/vendors/styles/core.css' %}" />
+	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css" />
+	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css" />
+	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css" />
+	<link rel="stylesheet" type="text/css" href="{% static '/static_files/vendors/styles/style.css' %}" />
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258"
+		crossorigin="anonymous"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+		crossorigin="anonymous"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag("js", new Date());
+
+		gtag("config", "G-GBZ3SGGX85");
+	</script>
+	<!-- Google Tag Manager -->
+	<script>
+		(function (w, d, s, l, i) {
+			w[l] = w[l] || [];
+			w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+			var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s),
+				dl = l != "dataLayer" ? "&l=" + l : "";
+			j.async = true;
+			j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+			f.parentNode.insertBefore(j, f);
+		})(window, document, "script", "dataLayer", "GTM-NXZMQSS");
+	</script>
+	<!-- End Google Tag Manager -->
+	<style>
+		.left-side-bar .menu-block .sidebar-menu #accordion-menu {
+			padding: 0;
+		}
+
+		.left-side-bar .menu-block .sidebar-menu #accordion-menu a {
+			text-decoration: none;
+		}
+
+		.left-side-bar .menu-block .sidebar-menu #accordion-menu .submenu ul {
+			text-decoration: none;
+		}
+
+		.notification-list a {
+			text-decoration: none;
+		}
+
+		.dropdown-toggle::after {
+			content: "\f107";
+			top: 49px;
+		}
+
+		.left-side-bar .menu-block .sidebar-menu #accordion-menu .fa {
+			position: absolute;
+			left: 10px;
+			width: 42px;
+			height: 42px;
+			color: red;
+			font-size: 18px;
+			display: flex;
+			text-align: center;
+			border-radius: 4px;
+		}
+
+		.left-side-bar .menu-block .sidebar-menu #accordion-menu .fa:hover {
+			color: white;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="pre-loader">
+		<div class="pre-loader-box">
+			<div class="loader-logo">
+				<img src="{% static '/static_files/images/FAVICON.png' %}" alt="" />
+			</div>
+			<div class="loader-progress" id="progress_div">
+				<div class="bar" id="bar1"></div>
+			</div>
+			<div class="percent" id="percent1">0%</div>
+			<div class="loading-text">Loading...</div>
+		</div>
+	</div>
+
+	{% if messages %}
+	{% for message in messages %}
+	<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" style="display: block;
+	width: 100%; position: fixed; z-index: 999;">
+		<strong>Message: </strong> {{message}}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+	{% endfor %}
+	{% endif %}
+	<div class="alert alert-warning alert-dismissible fade show" role="alert" style="display: block;
+	width: 100%; position: fixed; z-index: 999;" id="warn-mess">
+		<strong>Message: </strong> Your gamingHUB account is not verified yet. Please verify it to play our awesome
+		games.
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+	<div class="header">
+		<div class="header-left">
+			<div class="menu-icon fa fa-bars"></div>
+			<div class="search-toggle-icon bi bi-search" data-toggle="header_search"></div>
+			<div class="header-search">
+				<form>
+					<div class="form-group mb-0">
+						<i class="dw dw-search2 search-icon fa fa-search"></i>
+						<input type="text" class="form-control search-input" placeholder="Search Here" />
+						<div class="dropdown">
+							<a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
+								<i class="fa fa-arrow-down"></i>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right">
+								<div class="form-group row">
+									<label class="col-sm-12 col-md-2 col-form-label">From</label>
+									<div class="col-sm-12 col-md-10">
+										<input class="form-control form-control-sm form-control-line" type="text" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-12 col-md-2 col-form-label">To</label>
+									<div class="col-sm-12 col-md-10">
+										<input class="form-control form-control-sm form-control-line" type="text" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-12 col-md-2 col-form-label">Subject</label>
+									<div class="col-sm-12 col-md-10">
+										<input class="form-control form-control-sm form-control-line" type="text" />
+									</div>
+								</div>
+								<div class="text-right">
+									<button class="btn btn-primary">Search</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="header-right">
+			<div class="dashboard-setting user-notification">
+				<div class="dropdown">
+					<a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
+						<i class="dw dw-settings2 fa fa-cog"></i>
+					</a>
+				</div>
+			</div>
+			<div class="user-notification" style="text-decoration: none;">
+				<div class="dropdown">
+					<a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
+						<i class="icon-copy dw dw-notification fa fa-bell"></i>
+						<span class="badge notification-active"></span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right">
+						<div class="notification-list mx-h-350 customscroll">
+							<ul style="margin-left: -16px;">
+								<li>
+									<a href="#" style="text-decoration: none;">
+										<img src="{% static '/static_files/vendors/images/img.jpg' %}" alt="" />
+										<h3>John Doe</h3>
+										<p>
+											Lorem ipsum dolor sit amet, consectetur adipisicing
+											elit, sed...
+										</p>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<img src="{% static '/static_files/vendors/images/photo1.jpg' %}" alt="" />
+										<h3>Lea R. Frith</h3>
+										<p>
+											Lorem ipsum dolor sit amet, consectetur adipisicing
+											elit, sed...
+										</p>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<img src="{% static '/static_files/vendors/images/photo2.jpg' %}" alt="" />
+										<h3>Erik L. Richards</h3>
+										<p>
+											Lorem ipsum dolor sit amet, consectetur adipisicing
+											elit, sed...
+										</p>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<img src="{% static '/static_files/vendors/images/photo3.jpg' %}" alt="" />
+										<h3>John Doe</h3>
+										<p>
+											Lorem ipsum dolor sit amet, consectetur adipisicing
+											elit, sed...
+										</p>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<img src="{% static '/static_files/vendors/images/photo4.jpg' %}" alt="" />
+										<h3>Renee I. Hansen</h3>
+										<p>
+											Lorem ipsum dolor sit amet, consectetur adipisicing
+											elit, sed...
+										</p>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<img src="{% static '/static_files/vendors/images/photo5.jpg' %}" alt="" />
+										<h3>Vicki M. Coleman</h3>
+										<p>
+											Lorem ipsum dolor sit amet, consectetur adipisicing
+											elit, sed...
+										</p>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="user-info-dropdown">
+				<div class="dropdown">
+					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+						style="text-decoration: none;">
+						<span class="user-icon">
+							{%for a in test%}
+							<img src="{{a.image.url}}" alt="" / style="height: 50px; width: 45px;">
+							{%if a.status == True%}
+							<script>
+								document.getElementById('warn-mess').style.display = "none";
+							</script>
+							{%else%}
+							<script>
+								document.getElementById('warn-mess').style.display = "block";
+							</script>
+							{%endif%}
+							{%endfor%}
+						</span>
+						{% for a in test%}
+						<span class="user-name">{{a.name}}</span>
+						{%endfor%}
+					</a>
+					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+						<a class="dropdown-item" href="/my-profile"><i class="dw dw-user1 fa fa-user"></i> Profile</a>
+						<a class="dropdown-item" href="/my-profile"><i class="dw dw-settings2 fa fa-cog"></i>
+							Setting</a>
+						<a class="dropdown-item" href="faq.html"><i class="dw dw-help fa fa-question-circle"></i>
+							Help</a>
+						<a class="dropdown-item" id="logoutbtn" href="" onclick="logoutfun()"><i
+								class="dw dw-logout fa fa-sign-out"></i> Log Out</a>
+						<script>
+							function logoutfun() {
+								let lbtn = document.getElementById('logoutbtn');
+								let a = confirm("This action cannot be undone. Are you sure to logout?");
+								if (a == true) {
+									lbtn.setAttribute('href', '/logout')
+								}
+								else {
+									lbtn.setAttribute('href', '#')
+								}
+							}
+						</script>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="right-sidebar">
+		<div class="sidebar-title">
+			<h3 class="weight-600 font-16 text-blue">
+				Layout Settings
+				<span class="btn-block font-weight-400 font-12">User Interface Settings</span>
+			</h3>
+			<div class="close-sidebar" data-toggle="right-sidebar-close">
+				<i class="icon-copy fa fa-close"></i>
+			</div>
+		</div>
+		<div class="right-sidebar-body customscroll">
+			<div class="right-sidebar-body-content">
+				<h4 class="weight-600 font-18 pb-10">Header Background</h4>
+				<div class="sidebar-btn-group pb-30 mb-10">
+					<a href="javascript:void(0);" class="btn btn-outline-primary header-white active">White</a>
+					<a href="javascript:void(0);" class="btn btn-outline-primary header-dark">Dark</a>
+				</div>
+
+				<h4 class="weight-600 font-18 pb-10">Sidebar Background</h4>
+				<div class="sidebar-btn-group pb-30 mb-10">
+					<a href="javascript:void(0);" class="btn btn-outline-primary sidebar-light">White</a>
+					<a href="javascript:void(0);" class="btn btn-outline-primary sidebar-dark active">Dark</a>
+				</div>
+
+				<h4 class="weight-600 font-18 pb-10">Menu Dropdown Icon</h4>
+				<div class="sidebar-radio-group pb-10 mb-10">
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="sidebaricon-1" name="menu-dropdown-icon" class="custom-control-input"
+							value="icon-style-1" checked="" />
+						<label class="custom-control-label" for="sidebaricon-1"><i class="fa fa-angle-down"></i></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="sidebaricon-2" name="menu-dropdown-icon" class="custom-control-input"
+							value="icon-style-2" />
+						<label class="custom-control-label" for="sidebaricon-2"><i class="ion-plus-round"></i></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="sidebaricon-3" name="menu-dropdown-icon" class="custom-control-input"
+							value="icon-style-3" />
+						<label class="custom-control-label" for="sidebaricon-3"><i
+								class="fa fa-angle-double-right"></i></label>
+					</div>
+				</div>
+
+				<h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
+				<div class="sidebar-radio-group pb-30 mb-10">
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="sidebariconlist-1" name="menu-list-icon" class="custom-control-input"
+							value="icon-list-style-1" checked="" />
+						<label class="custom-control-label" for="sidebariconlist-1"><i
+								class="ion-minus-round"></i></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="sidebariconlist-2" name="menu-list-icon" class="custom-control-input"
+							value="icon-list-style-2" />
+						<label class="custom-control-label" for="sidebariconlist-2"><i class="fa fa-circle-o"
+								aria-hidden="true"></i></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="sidebariconlist-3" name="menu-list-icon" class="custom-control-input"
+							value="icon-list-style-3" />
+						<label class="custom-control-label" for="sidebariconlist-3"><i class="dw dw-check"></i></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="sidebariconlist-4" name="menu-list-icon" class="custom-control-input"
+							value="icon-list-style-4" checked="" />
+						<label class="custom-control-label" for="sidebariconlist-4"><i
+								class="icon-copy dw dw-next-2"></i></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="sidebariconlist-5" name="menu-list-icon" class="custom-control-input"
+							value="icon-list-style-5" />
+						<label class="custom-control-label" for="sidebariconlist-5"><i
+								class="dw dw-fast-forward-1"></i></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="sidebariconlist-6" name="menu-list-icon" class="custom-control-input"
+							value="icon-list-style-6" />
+						<label class="custom-control-label" for="sidebariconlist-6"><i class="dw dw-next"></i></label>
+					</div>
+				</div>
+
+				<div class="reset-options pt-30 text-center">
+					<button class="btn btn-danger" id="reset-settings">
+						Reset Settings
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="left-side-bar">
+		<div class="brand-logo">
+			<a href="/">
+				<img src="{% static '/static_files/images/logo.png' %}" alt="" class="dark-logo" />
+				<img src="{% static '/static_files/images/logo.png' %}" alt="" class="light-logo" />
+			</a>
+			<div class="close-sidebar" data-toggle="left-sidebar-close">
+				<i class="fa fa-close"></i>
+			</div>
+		</div>
+		<div class="menu-block customscroll">
+			<div class="sidebar-menu">
+				<ul id="accordion-menu">
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="fa fa-home"></span><span class="mtext">Home</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="/dashboard">Dashboard</a></li>
+							<li><a href="/">Landing Page</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="fa fa-book"></span><span class="mtext">Our Library</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="#">Ludo</a></li>
+							<li><a href="/play-chess">Chess</a></li>
+							<li><a href="#">Guess The Number</a></li>
+							<li><a href="#">Carrom Board</a></li>
+							<li><a href="#">Bingo</a></li>
+							<li><a href="#">Sudoku</a></li>
+							<li><a href="#">Chor, Sipahi & Bazir</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="fa fab fa-xbox"></span><span class="mtext" id="your-games">Your Games</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="#">Your Played Games</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="fa fa-play"></span><span class="mtext" id="your-games">Playground</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="#">Your Playground</a></li>
+						</ul>
+					</li>
+					<li>
+						<div class="dropdown-divider"></div>
+					</li>
+					<li>
+						<div class="sidebar-small-cap">Extra</div>
+					</li>
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="fa fa-tree"></span><span class="mtext" id="your-games">About
+								gamingHUB</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="#">About gamingHUB</a></li>
+							<li><a href="#">Our Memories</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="fa fa-code"></span><span class="mtext" id="your-games">Edu-Easy</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="https://dgarmy.pythonanywhere.com">Edu-Easy</a></li>
+							<li><a href="https://dgarmy.pythonanywhere.com/aboutus">About Edu-Easy</a></li>
+							<li><a href="https://dgarmy.pythonanywhere.com/courses">Edu-Easy's Courses</a></li>
+							<li><a href="https://dgarmy.pythonanywhere.com/resources">Edu-Easy's Resources</a></li>
+							<li><a href="https://dgarmy.pythonanywhere.com/contactus">Contact Edu-Easy</a></li>
+							<li><a href="https://dgarmy.pythonanywhere.com/login">Login Edu-Easy</a></li>
+							<li><a href="https://dgarmy.pythonanywhere.com/signup">Register With Edu-Easy</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="mobile-menu-overlay"></div>
+
+	<div class="main-container">
+		<div class="pd-ltr-20">
+			<div class="card-box pd-20 height-100-p mb-30">
+				<div class="row align-items-center">
+					<div class="col-md-4">
+						<img src="{% static '/static_files/vendors/images/banner-img.png' %}" alt="" />
+					</div>
+					<div class="col-md-8">
+						<h4 class="font-20 weight-500 mb-10">
+							Welcome back
+							{% for a in test%}
+							<div class="weight-600 font-30 text-blue">{{a.name}}!</div>
+							{% endfor %}
+						</h4>
+						<p class="font-18 max-width-600">
+							A very <span id="wishcont"
+								style="color: crimson; font-weight: 700; text-transform: lowercase;"></span> to
+							{{user.username}}.Welcome to gamingHUB, a gaming platform which increase your confidence and
+							increase your winning wish in your body. Are you ready for playing with yourself? At now,
+							choose a game to compete with the better best players of the world and verify yourself as a
+							true player.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-3 mb-30">
+					<div class="card-box height-100-p widget-style1">
+						<div class="d-flex flex-wrap align-items-center">
+							<div class="progress-data">
+								<img src="https://cdn-icons-png.flaticon.com/128/7898/7898663.png" alt=""
+									style="margin-top: 14px;">
+							</div>
+							<div class="widget-data">
+								<div class="h4 mb-0" style="margin-top: 23px;">Chess</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 mb-30">
+					<div class="card-box height-100-p widget-style1">
+						<div class="d-flex flex-wrap align-items-center">
+							<div class="progress-data">
+								<img src="https://cdn-icons-png.flaticon.com/128/7505/7505666.png" alt=""
+									style="margin-top: 14px;">
+							</div>
+							<div class="widget-data">
+								<div class="h4 mb-0" style="margin-top: 23px;">Bingo</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 mb-30">
+					<div class="card-box height-100-p widget-style1">
+						<div class="d-flex flex-wrap align-items-center">
+							<div class="progress-data">
+								<img src="https://cdn-icons-png.flaticon.com/128/2662/2662258.png" alt=""
+									style="margin-top: 14px;">
+							</div>
+							<div class="widget-data">
+								<div class="h4 mb-0" style="margin-top: 23px;">Sudoku</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 mb-30">
+					<div class="card-box height-100-p widget-style1">
+						<div class="d-flex flex-wrap align-items-center">
+							<div class="progress-data">
+								<img src="https://cdn-icons-png.flaticon.com/128/514/514163.png" alt=""
+									style="margin-top: 14px;">
+							</div>
+							<div class="widget-data">
+								<div class="h4 mb-0" style="margin-top: 23px;">Hangman</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-8 mb-30">
+					<div class="card-box height-100-p pd-20">
+						<h2 class="h4 mb-20">Your Game Data</h2>
+						<!--<div id="chart5"></div>-->
+						<img src="{% static '/static_files/images/bgimage.jpg' %}" style="width: 100%; height: 100%;
+							background-position: center;
+							background-size: cover;">
+					</div>
+				</div>
+				<div class="col-xl-4 mb-30">
+					<form action="/schedule-game" method="get">
+						<div class="card-box height-100-p pd-20">
+							<h2 class="h4 mb-20">Set Target</h2>
+							<div class="content" style="padding-top: 13px;">
+								<label style="display: block;">Target Name</label>
+								<input type="text" name="tn" id="tn" style="border: 1.5px solid grey; border-radius: 7px;
+								height: 37px; padding: 9px 10px;">
+								<label style="margin-top: 26px; display: block;">Select the game</label>
+								<select name="game" id="game">
+									<option value="ludo" active aria-selected="true">None...</option>
+									<option value="Ludo">Ludo</option>
+									<option value="Bingo">Bingo</option>
+									<option value="Chess">Chess</option>
+									<option value="Carrom Board">Carrom Board</option>
+									<option value="Hangman">Hangman</option>
+									<option value="Chor, Sipahi & Bazir">Chor, Sipahi & Bazir</option>
+								</select>
+								<label style="margin-top: 16px; display: block;">Date</label>
+								<input type="date" name="date" id="date">
+								<label style="margin-top: 16px; display: block;">Time</label>
+								<input type="time" name="time" id="time">
+								<button type="submit"
+									style="display: block; margin-top: 14px; padding: 13px 19px; border: none; background: blue; color: white; font-weight: bolder; border-radius: 7px;cursor: pointer;">Schedule</button>
+							</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="card-box mb-30">
+			<h2 class="h4 pd-20">Explore Our blogs</h2>
+			<div class="blog-cards">
+				<div class="card">
+					<div class="img">
+						<img src="{% static '/static_files/images/signup.jpeg' %}" alt="">
+					</div>
+					<div class="text">
+						<h2>Can we win rupees with online game?Online Earning</h2>
+						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est autem libero asperiores
+							laudantium doloribus aliquid obcaecati, velit inventore, fugiat nulla numquam commodi a
+							adipisci, impedit debitis tempora eligendi dolorum error. At quo sapiente culpa, id quod
+							vitae consequuntur cum recusandae.</p>
+					</div>
+					<h3><a href="#">Read More...</a></h3>
+				</div>
+				<div class="card">
+					<div class="img">
+						<img src="{% static '/static_files/images/signup.jpeg' %}" alt="">
+					</div>
+					<div class="text">
+						<h2>Can we win rupees with online game?Online Earning</h2>
+						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est autem libero asperiores
+							laudantium doloribus aliquid obcaecati, velit inventore, fugiat nulla numquam commodi a
+							adipisci, impedit debitis tempora eligendi dolorum error. At quo sapiente culpa, id quod
+							vitae consequuntur cum recusandae.</p>
+					</div>
+					<h3><a href="#">Read More...</a></h3>
+				</div>
+				<div class="card">
+					<div class="img">
+						<img src="{% static '/static_files/images/signup.jpeg' %}" alt="">
+					</div>
+					<div class="text">
+						<h2>Can we win rupees with online game?Online Earning</h2>
+						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est autem libero asperiores
+							laudantium doloribus aliquid obcaecati, velit inventore, fugiat nulla numquam commodi a
+							adipisci, impedit debitis tempora eligendi dolorum error. At quo sapiente culpa, id quod
+							vitae consequuntur cum recusandae.</p>
+					</div>
+					<h3><a href="#">Read More...</a></h3>
+				</div>
+				<div class="card">
+					<div class="img">
+						<img src="{% static '/static_files/images/signup.jpeg' %}" alt="">
+					</div>
+					<div class="text">
+						<h2>Can we win rupees with online game?Online Earning</h2>
+						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est autem libero asperiores
+							laudantium doloribus aliquid obcaecati, velit inventore, fugiat nulla numquam commodi a
+							adipisci, impedit debitis tempora eligendi dolorum error. At quo sapiente culpa, id quod
+							vitae consequuntur cum recusandae.</p>
+					</div>
+					<h3><a href="#">Read More...</a></h3>
+				</div>
+				<div class="card">
+					<div class="img">
+						<img src="{% static '/static_files/images/signup.jpeg' %}" alt="">
+					</div>
+					<div class="text">
+						<h2>Can we win rupees with online game?Online Earning</h2>
+						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est autem libero asperiores
+							laudantium doloribus aliquid obcaecati, velit inventore, fugiat nulla numquam commodi a
+							adipisci, impedit debitis tempora eligendi dolorum error. At quo sapiente culpa, id quod
+							vitae consequuntur cum recusandae.</p>
+					</div>
+					<h3><a href="#">Read More...</a></h3>
+				</div>
+				<div class="card">
+					<div class="img">
+						<img src="{% static '/static_files/images/signup.jpeg' %}" alt="">
+					</div>
+					<div class="text">
+						<h2>Can we win rupees with online game?Online Earning</h2>
+						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est autem libero asperiores
+							laudantium doloribus aliquid obcaecati, velit inventore, fugiat nulla numquam commodi a
+							adipisci, impedit debitis tempora eligendi dolorum error. At quo sapiente culpa, id quod
+							vitae consequuntur cum recusandae.</p>
+					</div>
+					<h3><a href="#">Read More...</a></h3>
+				</div>
+				<div class="card">
+					<div class="img">
+						<img src="{% static '/static_files/images/signup.jpeg' %}" alt="">
+					</div>
+					<div class="text">
+						<h2>Can we win rupees with online game?Online Earning</h2>
+						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est autem libero asperiores
+							laudantium doloribus aliquid obcaecati, velit inventore, fugiat nulla numquam commodi a
+							adipisci, impedit debitis tempora eligendi dolorum error. At quo sapiente culpa, id quod
+							vitae consequuntur cum recusandae.</p>
+					</div>
+					<h3><a href="#">Read More...</a></h3>
+				</div>
+				<div class="card">
+					<div class="img">
+						<img src="{% static '/static_files/images/signup.jpeg' %}" alt="">
+					</div>
+					<div class="text">
+						<h2>Can we win rupees with online game?Online Earning</h2>
+						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est autem libero asperiores
+							laudantium doloribus aliquid obcaecati, velit inventore, fugiat nulla numquam commodi a
+							adipisci, impedit debitis tempora eligendi dolorum error. At quo sapiente culpa, id quod
+							vitae consequuntur cum recusandae.</p>
+					</div>
+					<h3><a href="#">Read More...</a></h3>
+				</div>
+				<div class="card">
+					<div class="img">
+						<img src="{% static '/static_files/images/signup.jpeg' %}" alt="">
+					</div>
+					<div class="text">
+						<h2>Can we win rupees with online game?Online Earning</h2>
+						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est autem libero asperiores
+							laudantium doloribus aliquid obcaecati, velit inventore, fugiat nulla numquam commodi a
+							adipisci, impedit debitis tempora eligendi dolorum error. At quo sapiente culpa, id quod
+							vitae consequuntur cum recusandae.</p>
+					</div>
+					<h3><a href="#">Read More...</a></h3>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- js -->
+	<script src="{% static '/static_files/vendors/scripts/core.js' %}"></script>
+	<script src="{% static '/static_files/vendors/scripts/script.min.js' %}"></script>
+	<script src="{% static '/static_files/vendors/scripts/process.js' %}"></script>
+	<script src="{% static '/static_files/vendors/scripts/layout-settings.js' %}"></script>
+	<script src="{% static '/static_files/src/plugins/datatables/js/responsive.bootstrap4.min.js' %}"></script>
+	<script src="{% static '/static_files/vendors/scripts/dashboard.js' %}"></script>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
+			style="display: none; visibility: hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+	<script src="https://kit.fontawesome.com/8d3f65e0cd.js" crossorigin="anonymous"></script>
+</body>
+<script>
+	let dat = new Date();
+	let wish = document.getElementById('wishcont');
+	let hour = dat.getHours();
+
+	if (hour > 0 && hour <= 12) {
+		wish.innerHTML = "Good Morning"
+	}
+
+	else if (hour > 12 && hour <= 15) {
+		wish.innerHTML = "Good Afternoon"
+	}
+
+	else if (hour > 15 && hour <= 20) {
+		wish.innerHTML = "Good Evening"
+	}
+
+	else if (hour > 20) {
+		wish.innerHTML = "Good Night"
+	}
+
+	else {
+		wish.innerHTML = "Nothing";
+	}
+
+	function whitecolor() {
+		let body = document.getElementsById('body');
+		body.style.background = "black";
+	}
+</script>
+
+</html>
